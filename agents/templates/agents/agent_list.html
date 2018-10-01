@@ -1,0 +1,28 @@
+
+{% extends "base_layout.html" %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block body %}
+<div class="container">
+<h3>Agentes Monotorizados Actualmente: </h3>
+    </div>
+<div class="container">
+
+
+<div class="card-columns">
+{% for agent in agents %}
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Hostname: {{ agent.host_name }}</h5>
+    <p class="card-text">IP :{{ agent.ip_address }}</p>
+      <p class="card-text">Comunidad: {{ agent.community_name }}</p>
+    <a href="#" class="btn btn-success">Ver más..</a>
+  </div>
+</div>
+{% endfor %}
+
+</div></div>
+{% endblock %}
