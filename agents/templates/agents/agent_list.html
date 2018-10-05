@@ -1,28 +1,51 @@
-
 {% extends "base_layout.html" %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %} Home Page {% endblock %}
+</head>
 
-{% block title %} Home Page {% endblock %}
 
 {% block body %}
 <div class="container">
-<h3>Agentes Monotorizados Actualmente: </h3>
-    </div>
+  <div class="row">
+
+<h3><br>Agentes Monotorizados Actualmente: {{ agentAmount}} </h3>
+    </div></div>
+
+
 <div class="container">
-
-
+  <br>
+<div class="row">
 <div class="card-columns">
+  {%if agents %}
 {% for agent in agents %}
 
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Hostname: {{ agent.host_name }}</h5>
-    <p class="card-text">IP :{{ agent.ip_address }}</p>
-      <p class="card-text">Comunidad: {{ agent.community_name }}</p>
-    <a href="#" class="btn btn-success">Ver más..</a>
-  </div>
-</div>
-{% endfor %}
 
-</div></div>
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="https://image.flaticon.com/icons/svg/1148/1148833.svg" height="200px" width="200px" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Hostname: {{ agent.host_name }}</h5>
+      <p class="card-text">IP:<h8  id="ip{{ agent.id}}" name="ip{{ agent.id}}" > {{ agent.ip_address }}</h8></p>
+        <p class="card-text">Comunidad: <h8 id="comunidad{{ agent.id}}" name="comunidad{{ agent.id}}">{{ agent.community_name }}</h8></p>
+        <p class="card-text">N° de Interfaces: </p>
+      <a href="#" class="btn btn-primary" onClick="additonalInfo({{ agent.id}});">Ver más...</a>
+          <a href="#" class="btn btn-secondary" onClick="">Gestionar</a>
+
+    </div>
+</div>
+
+
+    {% endfor %}
+  {% else %}
+   <h2>No hay agentes !</h2>
+  {% endif %}
+
+</div>
+</div>
+</div>
 {% endblock %}
+
+</html>

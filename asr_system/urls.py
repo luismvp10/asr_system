@@ -20,6 +20,7 @@ from . import views
 urlpatterns = [
     url(r'^agents/', include('agents.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', include('agents.urls')),
+    url(r'^', include('agents.urls')),
+
 
 ]
