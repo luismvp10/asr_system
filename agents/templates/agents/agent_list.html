@@ -11,7 +11,7 @@
 <div class="container">
   <div class="row">
 
-<h3><br>Agentes Monotorizados Actualmente: {{ agentAmount}} </h3>
+<h5><br>Agentes Monotorizados Actualmente: {{ agentAmount}} </h5>
     </div></div>
 
 
@@ -24,15 +24,15 @@
 
 
 
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="https://image.flaticon.com/icons/svg/1148/1148833.svg" height="200px" width="200px" alt="Card image cap">
+<div id="card{{ agent.id}}" name="card{{ agent.id}}" class="card" style="width: 18rem;">
+    <img class="card-img-top" src="https://image.flaticon.com/icons/svg/1148/1148833.svg" height="180px" width="160px" style="margin-top:10%;"alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">Hostname: {{ agent.host_name }}</h5>
       <p class="card-text">IP:<h8  id="ip{{ agent.id}}" name="ip{{ agent.id}}" > {{ agent.ip_address }}</h8></p>
         <p class="card-text">Comunidad: <h8 id="comunidad{{ agent.id}}" name="comunidad{{ agent.id}}">{{ agent.community_name }}</h8></p>
         <p class="card-text">N° de Interfaces: </p>
       <a href="#" class="btn btn-primary" onClick="additonalInfo({{ agent.id}});">Ver más...</a>
-          <a href="#" class="btn btn-secondary" onClick="">Gestionar</a>
+          <a href="#" class="btn btn-secondary" onClick="getStateAgent();">Gestionar</a>
 
     </div>
 </div>

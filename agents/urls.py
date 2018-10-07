@@ -19,5 +19,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.agents),
-    url(r'^add$', views.agent_add, name='agent_add')
+    url(r'^add$', views.agent_add, name='agent_add'),
+    url(r'^getStateAgent/(?P<ip>(?:(?:0|1[\d]{0,2}|2(?:[0-4]\d?|5[0-5]?|[6-9])?|[3-9]\d?)\.){3}(?:0|1[\d]{0,2}|2(?:[0-4]\d?|5[0-5]?|[6-9])?|[3-9]\d?))/$', views.getStateAgent, name='getStateAgent'),
+    url(r'^getInterfacesNet/(?P<comunidad>\w+)/(?P<ip>(?:(?:0|1[\d]{0,2}|2(?:[0-4]\d?|5[0-5]?|[6-9])?|[3-9]\d?)\.){3}(?:0|1[\d]{0,2}|2(?:[0-4]\d?|5[0-5]?|[6-9])?|[3-9]\d?))/$', views.getInterfacesNet, name='getInterfacesNet'),
 ]

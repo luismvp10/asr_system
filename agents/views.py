@@ -17,9 +17,6 @@ def agents(request):
     agents = Agent.objects.all()
     agentAmount= len(Agent.objects.all())
     list_interfaces = []
-
-
-
     #agent_lits = "- ".join([str(agent) for agent in agents])
     return render(request, 'agents/agent_list.html', {'agents':agents, 'agentAmount':agentAmount,})
 
@@ -34,15 +31,19 @@ def agent_add(request):
             form = AgentForm()
         return render(request, 'agents/agent_add.html',{'form':form})
 
+def getStateAgent(request,ip):
+    response = os.system("ping -c 1 " + ip + " > /dev/null 2>&1")
+    return  HttpResponse(response)
 
-
-def get_AgentName(comunidad,ip):
+def getAgentName(comunidad,ip):
 	name = consultaSNMP(comunidad, ip, '1.3.6.1.2.1.1.5.0')
 	return name
 
-def getInterfacesNet(comunidad,ip):
+def getInterfacesNet(request, comunidad,ip):
+    print(comunidad)
+    print(ip)
     noInterface = int(consultaSNMP(comunidad, ip, '1.3.6.1.2.1.2.1.0'))
-    return  noInterface
+    return  HttpResponse(noInterface)
 
 
 
