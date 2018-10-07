@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.http import  HttpResponse
 from .models import Agent
 from django.shortcuts import render, redirect
-from agents.agent_addForm import *
+from agents.agent_addForm import  AgentForm
 from agents.getSNMP import consultaSNMP
 import os
 import time
@@ -21,15 +21,27 @@ def agents(request):
     return render(request, 'agents/agent_list.html', {'agents':agents, 'agentAmount':agentAmount,})
 
 
-def agent_add(request):
-    if request.method == 'POST':
+def agentAdd(request):
+    if request.method=='POST':
         form = AgentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('agent:home')
-        else:
-            form = AgentForm()
-        return render(request, 'agents/agent_add.html',{'form':form})
+
+        return  redirect('agents/')
+    else:
+        form = AgentForm()
+    return render(request, 'agents/agent_addForm.html', {'form':form})
+
+
+
+
+
+
+
+
+
+
+
 
 def getStateAgent(request,ip):
     response = os.system("ping -c 1 " + ip + " > /dev/null 2>&1")
@@ -55,4 +67,18 @@ def getInterfacesNet(request, comunidad,ip):
         print(list_interfaces)
     print("********************HOla")
     print(list_interfaces[0])
-    print(list_interfaces[1])"""
+    print(list_interfaces[1])
+    
+    
+          if request.method == 'POST':
+              form = AgentForm(request.POST)
+              if form.is_valid():
+                 form.save()
+              return render(request, 'agents/agent_addForm.html', {'form': form})
+        else:
+         form = AgentForm()
+         return render(request, 'agents/agent_addForm.html', {'form':form})
+    
+    
+    
+    """
