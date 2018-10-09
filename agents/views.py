@@ -33,13 +33,25 @@ def agentAdd(request):
     return render(request, 'agents/agent_addForm.html', {'form':form})
 
 
+def agentDetails(request, id):
+    agents = Agent.objects.filter(id=id)
+    print(agents)
+    return  render(request,'agents/agent_details.html', {'agents':agents,})
 
 
+def agentDelete(request, id):
+    agent = Agent.objects.filter(id=id)
+    agent.delete()
+    return HttpResponse(1)
 
 
+def agentEdit(request, id):
+    agent = Agent.objects.filter(id=id)
+    return HttpResponse(agent)
 
-
-
+def getAgentName(request, comunidad, ip):
+    name = str(consultaSNMP(comunidad, ip, '1.3.6.1.2.1.1.5.0'))
+    return HttpResponse(name)
 
 
 
@@ -47,16 +59,38 @@ def getStateAgent(request,ip):
     response = os.system("ping -c 1 " + ip + " > /dev/null 2>&1")
     return  HttpResponse(response)
 
-def getAgentName(comunidad,ip):
-	name = consultaSNMP(comunidad, ip, '1.3.6.1.2.1.1.5.0')
-	return name
+
+def getOperativeSystem(request,comunidad,ip):
+    so = consultaSNMP(comunidad, ip, '1.3.6.1.2.1.1.1.0')
+    return HttpResponse(so)
+
 
 def getInterfacesNet(request, comunidad,ip):
-    print(comunidad)
-    print(ip)
     noInterface = int(consultaSNMP(comunidad, ip, '1.3.6.1.2.1.2.1.0'))
     return  HttpResponse(noInterface)
 
+
+def getTimeActivity(request, comunidad, ip):
+    time = consultaSNMP(comunidad, ip, '1.3.6.1.2.1.1.3.0')
+    res = getCompleteTime(time)
+    return HttpResponse(res)
+
+
+def getCompleteTime(nums):
+    num = int(nums)/100
+    hor = (int(num / 3600))
+    minu = int((num - (hor * 3600)) / 60)
+    seg = num - ((hor * 3600) + (minu * 60))
+    res= str(hor) + "h " + str(minu) + "m " + str(seg) + "s"
+    return res
+
+def getAgentLocation(request, comunidad, ip):
+    location = str(consultaSNMP(comunidad, ip, '1.3.6.1.2.1.1.6.0'))
+    return HttpResponse(location)
+
+def getAgentContact(request, comunidad, ip):
+    contact = consultaSNMP(comunidad, ip, '1.3.6.1.2.1.1.4.0')
+    return HttpResponse(contact)
 
 
 """ for agent in agents:

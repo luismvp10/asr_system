@@ -31,6 +31,9 @@ function callbackFunc(response) {
 }
 */
 
+
+
+
 function additonalInfo(id) {
 var ipString= $("#ip"+id).html();
 var lengString= ipString.length;
@@ -51,6 +54,24 @@ var ip= ipString.substring(1,lengString);
                      $('#interfazP'+id).show();
                      $('#interfaz'+id).text(""+response).show();
 
+                    },
+                    error:function(){
+                   console.log('Se perdió la conexión! ');
+                    },
+                 });
+}
+
+
+
+function agentDetails(id){
+
+console.log("JAJAJAJA"+id);
+ $.ajax({
+                    type: 'GET',
+                    url: '/details/'+id,
+                    success:  function(response){
+                    url= '/details/'+id,
+                    $(location).attr("href",url);
                     },
                     error:function(){
                    console.log('Se perdió la conexión! ');
