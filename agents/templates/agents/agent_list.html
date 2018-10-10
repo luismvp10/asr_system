@@ -7,38 +7,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Network's monitoring</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         Agentes
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'agentAdd' %}">Agregar</a>
-          <a class="dropdown-item" href="#">Modificar</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Eliminar</a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
 
 
 
@@ -64,7 +33,7 @@
 <div id="card{{ agent.id}}" name="card{{ agent.id}}" class="card" style="width: 18rem;">
     <img class="card-img-top" src="https://image.flaticon.com/icons/svg/1148/1148833.svg" height="150px" width="150px" style="margin-top:10%;"alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">Hostname: {{ agent.host_name }}</h5>
+      <h6 class="card-title">Hostname: {{ agent.host_name }}</h6>
       <p class="card-text" >IP:<h8  id="ip{{ agent.id}}" name="ip{{ agent.id}}" > {{ agent.ip_address }}</h8></p>
         <p class="card-text" id="comunidadP{{ agent.id}}" name="comunidadP{{ agent.id}}">Comunidad: <h8 id="comunidad{{ agent.id}}" name="comunidad{{ agent.id}}">{{ agent.community_name }}</h8></p>
         <p class="card-text" id="interfazP{{ agent.id}}" name="interfazP{{ agent.id}}" style="display:none;">N° de Interfaces: <h8 id="interfaz{{ agent.id}}" name="interfaz{{ agent.id}}" style="display:none;">X </h8></p>

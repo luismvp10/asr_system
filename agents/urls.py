@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.agents, name='home'),
+    url(r'^actions$', views.agentActions, name='agentActions'),
     url(r'^add$', views.agentAdd, name='agentAdd'),
     url(r'^details/(?P<id>\d)/$', views.agentDetails, name='agentDetails'),
     url(r'^edit/(?P<id>\d)/$', views.agentEdit, name='agentEdit'),

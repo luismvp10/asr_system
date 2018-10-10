@@ -13,29 +13,11 @@
 
 <script  type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script  type="text/javascript"  src="{% static 'js/detailsAgents.js' %}"></script>
-    <title>  {% block title %} Home Page {% endblock %}</title>
+    <title>  {% block title %} Agent's Actions{% endblock %}</title>
 
      <script>
     $( document ).ready(function() {
-        console.log( "document loaded DETAILS, AJAX Working"  );
-
-        {%if agents %}
-          {% for agent in agents %}
-           getNoInterfaces('{{ agent.community_name}}','{{agent.ip_address }}');
-            getAgentName('{{ agent.community_name}}','{{agent.ip_address }}');
-               getOperativeSystem('{{ agent.community_name}}','{{agent.ip_address }}');
-               function time(){
-                getTimeActivity('{{ agent.community_name}}','{{agent.ip_address }}');
-                }
-                getAgentLocation('{{ agent.community_name}}','{{agent.ip_address }}');
-                getContact('{{ agent.community_name}}','{{agent.ip_address }}');
-              {% endfor %}
-            {% else %}
-          /*  alert("No Existen Agentes");*/
-            {% endif %}
-
-
-  setInterval(time, 15000);
+        console.log( "document loaded ACTIONS, AJAX Working"  );
 
     });
     </script>
@@ -85,7 +67,7 @@
           {%if agents %}
         {% for agent in agents %}
         <div class="card">
-          <div class="card-header bg-success text-white">
+          <div class="card-header bg-info text-white">
            <h4>Hostname: {{ agent.host_name }}</h4>
           </div>
           <div class="card-body">
@@ -99,40 +81,14 @@
                       <h5 class="text-primary">Comunidad: <span class="card-title text-primary">{{ agent.community_name }}</span> </h5>
                   </div>
               </div>
-              <br><br>
 
-              <div class="row">
-                <div class="col">
-                 <h6>Nombre: <span  id="username" name="username">Username</span> </h6>
-                </div>
-                <div class="col">
-                 <h6>S.O: <span  id="so" name="so">Windows/Ubuntu/etc</span> </h6>
-                </div>
-                <div class="col">
-                    <h6> N° de Interfaces: <span  id="noInterfaces" name="noInterfaces">X</span> </h6>
-
-                </div>
-              </div>
-              <br>
-  <div class="row">
-    <div class="col">
-         <h6>  Tiempo de actividad: <span  id="time" name="time">0:00:00</span> </h6>
-    </div>
-    <div class="col">
-      <h6>  Ubicación: <span  id="location" name="location">CDMX</span> </h6>
-    </div>
-    <div class="col">
-        <h6> Contacto: <span  id="contact" name="contact">user@mail.com</span> </h6>
-
-    </div>
-  </div>
 
               <br><br>
-          <!--  <a href="#" class="btn btn-warning">Modificar</a>
-               <a href="#" class="btn btn-danger">Eliminar</a>-->
+         <a href="#" class="btn btn-warning" onclick="editAgent({{ agent.id }})">Modificar</a>
+               <a href="#" class="btn btn-danger"  onclick="deleteAgent({{ agent.id }})">Eliminar</a>
           </div>
         </div>
-
+<br><br>
           {% endfor %}
           {% else %}
            <h2>No hay agentes !</h2>
@@ -143,42 +99,13 @@
 
 
 </div>
+
+<br><br>
    {% endblock %}
 
 
 <br><br>
-<!--Gráficas -->
 
-
-<div class="container">
-  <div class="row">
-    <div class="col-md">
-        <img src="{% static 'imgs/trafico1.png' %}">
-
-    </div>
-    <div class="col-md">
-           <img src="{% static 'imgs/trafico1.png' %}">
-    </div>
-
-  </div>
-</div>
-
-
-<br><br>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md">
-        <img src="{% static 'imgs/trafico1.png' %}">
-
-    </div>
-    <div class="col-md">
-           <img src="{% static 'imgs/trafico1.png' %}">
-    </div>
-
-  </div>
-</div>
-<!--End Gráficas -->
 
 <br><br><br>
 

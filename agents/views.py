@@ -21,6 +21,12 @@ def agents(request):
     return render(request, 'agents/agent_list.html', {'agents':agents, 'agentAmount':agentAmount,})
 
 
+def agentActions(request):
+    agents = Agent.objects.all()
+    return render(request, 'agents/agent_actions.html', {'agents': agents,})
+
+
+
 def agentAdd(request):
     if request.method=='POST':
         form = AgentForm(request.POST)
@@ -71,7 +77,7 @@ def getInterfacesNet(request, comunidad,ip):
 
 
 def getTimeActivity(request, comunidad, ip):
-    time = consultaSNMP(comunidad, ip, '1.3.6.1.2.1.1.3.0')
+    time = int(consultaSNMP(comunidad, ip, '1.3.6.1.2.1.1.3.0'))
     res = getCompleteTime(time)
     return HttpResponse(res)
 
